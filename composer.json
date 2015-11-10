@@ -3,8 +3,6 @@
     "description": "ucloud ufilesdk base on rest",
     "license": "MIT",
     "keywords": ["ucloud ufile sdk"],
-    "version": "1.0.0",
-    "type": "project",
     "authors": [
         {
             "name": "xujif",
