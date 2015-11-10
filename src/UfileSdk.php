@@ -101,5 +101,12 @@ class UfileSdk {
 		}
 		return $resp->getHeader('Content-Type')[0];
 	}
+	public function delete($key_name) {
+		$resp = $this->httpClient->delete($key_name);
+		if ($resp->getStatusCode() != 200) {
+			throw new UfileSdkException("delete $key_name error :" . $resp->getStatusCode());
+		}
+		return true;
+	}
 
 }
