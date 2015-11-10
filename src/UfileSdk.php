@@ -62,21 +62,14 @@ class UfileSdk {
 		$this->httpClient = new Client(['base_uri' => $this->host, 'handler' => $stack, 'debug' => $debug]);
 	}
 
-	public function put($key_name, $contents, $need_hash = false) {
+	public function put($key_name, $contents, $headers = array()) {
 		$headers = [];
-		if ($need_hash) {
-			$headers['Content-MD5'] = md5($contents);
-		}
 		$resp = $this->httpClient->request('PUT', $key_name, [
 			'headers' => $headers,
 			'body' => $contents]);
 		return [$resp->getBody()->getContents(), $resp->getStatusCode()];
 	}
-	public function putFile($key_name, $filePath) {
-		$headers = [];
-		if ($need_hash) {
-			$headers['Content-MD5'] = md5($contents);
-		}
+	public function putFile($key_name, $filePath, $headers = array()) {
 		$resp = $this->httpClient->request('PUT', $key_name, [
 			'headers' => $headers,
 			'body' => fopen($filePath, 'r')]);
