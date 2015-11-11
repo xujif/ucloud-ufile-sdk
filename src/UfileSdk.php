@@ -108,5 +108,16 @@ class UfileSdk {
 		}
 		return true;
 	}
+	public function meta($key_name) {
+		$resp = $this->httpClient->head($key_name);
+		if ($resp->getStatusCode() != 200) {
+			throw new UfileSdkException("size $key_name error :" . $resp->getStatusCode());
+		}
+		$meta = [];
+		foreach ($resp->getHeaders() as $k => $v) {
+			$meta[$k] = $v[0];
+		}
+		return $meta;
+	}
 
 }
