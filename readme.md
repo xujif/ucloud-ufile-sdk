@@ -1,7 +1,7 @@
 #ucloud ufile sdk
 base on https://docs.ucloud.cn/api-docs/ufile-api/ 
 #usage
-    $sdk = new UfileSdk('storage','ap_pub_key','ap_pub_secret');
+    $sdk = new UfileSdk('storage','api_pub_key','api_pub_secret');
     $sdk->put('text.txt',"content");
     $sdk->putFile('text.txt',"/path/to/yourfile");
     $contents = $sdk->get('dd');
