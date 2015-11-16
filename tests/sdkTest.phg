@@ -10,7 +10,7 @@ class sdkTest extends  PHPUnit_Framework_TestCase
 {
     protected $sdk;
     public function setUp(){
-        $this->sdk = new UfileSdk('storage321','ucloudchenyanregister@yahoo.com.au1374740060827269897','6c278ff8493b4315f448ad3d6183b8277a5c72d3');
+        $this->sdk = new UfileSdk('storage321','***','*****');
     }
     public function testPutFile()
     {
