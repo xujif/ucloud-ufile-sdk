@@ -5,6 +5,10 @@
     "keywords": ["ucloud ufile sdk"],
     "authors": [
         {
+            "name": "xujif",
+            "email": "i@xujif.com"
+        },
+        {
             "name": "longfei.he",
             "email": "hlf513@gmail.com"
         }
