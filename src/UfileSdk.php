@@ -63,16 +63,21 @@ class UfileSdk {
 	}
 
 	public function put($key_name, $contents, $headers = array()) {
-		$headers = [];
 		$resp = $this->httpClient->request('PUT', $key_name, [
 			'headers' => $headers,
 			'body' => $contents]);
+		if($resp->getStatusCode() != 200){
+			throw new UfileSdkException("putfile $key_name error :" . $resp->getStatusCode());
+		}
 		return [$resp->getBody()->getContents(), $resp->getStatusCode()];
 	}
 	public function putFile($key_name, $filePath, $headers = array()) {
 		$resp = $this->httpClient->request('PUT', $key_name, [
 			'headers' => $headers,
 			'body' => fopen($filePath, 'r')]);
+		if($resp->getStatusCode() != 200){
+			throw new UfileSdkException("putfile $key_name error :" . $resp->getStatusCode());
+		}
 		return [$resp->getBody()->getContents(), $resp->getStatusCode()];
 	}
 	public function get($key_name) {
@@ -103,7 +108,7 @@ class UfileSdk {
 	}
 	public function delete($key_name) {
 		$resp = $this->httpClient->delete($key_name);
-		if ($resp->getStatusCode() != 200) {
+		if ( ! in_array($resp->getStatusCode(), [200, 204])) {
 			throw new UfileSdkException("delete $key_name error :" . $resp->getStatusCode());
 		}
 		return true;
